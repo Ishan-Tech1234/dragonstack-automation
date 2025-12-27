@@ -2,8 +2,9 @@
 <suite name="Automation Suite">
     <test name="Login Tests">
         <classes>
-<!--            <class name="tests.LoginSmokeTest"/>-->
+            <class name="tests.LoginSmokeTest"/>
             <class name="tests.NegativeLoginTest"/>
+            <class name ="tests.SignupTest"/>
         </classes>
     </test>
 </suite>
