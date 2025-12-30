@@ -1,6 +1,7 @@
 package pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -41,9 +42,20 @@ public class SignupPage {
     }
     public boolean isCreateDragonButtonVisible(){
         wait.until(
-                ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\'root\']/div[2]/button"))
+        ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\'root\']/div[2]/button"))
         );
-        return true;
+        return driver.findElement(By.xpath("//*[@id=\'root\']/div[2]/button")).isDisplayed();
+    }
+    public void logoutButtonClick(){
+        wait.until(
+                ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\'root\']/button"))
+        );
+        WebElement logoutButton = driver.findElement(By.xpath("//*[@id=\'root\']/button"));
+        JavascriptExecutor executor = (JavascriptExecutor) driver;
+        executor.executeScript("arguments[0].click();",logoutButton);
+    }
+    public boolean isLoginVisible(){
+        return driver.findElement(By.xpath("//*[@id=\'root\']/div/button[1]")).isDisplayed();
     }
 
 }

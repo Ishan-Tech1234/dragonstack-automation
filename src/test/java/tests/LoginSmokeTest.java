@@ -25,7 +25,7 @@ public class LoginSmokeTest extends BaseTest {
         Loginpage page = new Loginpage(driver);
         page.enterUsername("manish123");
         page.enterPassword("manish123");
-        page.buttonClick();
+        page.loginButtonClick();
         page.logoutValidation();
 
 

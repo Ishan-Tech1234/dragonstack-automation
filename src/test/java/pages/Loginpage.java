@@ -2,6 +2,7 @@ package pages;
 
 import base.BaseTest;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -31,12 +32,12 @@ public class Loginpage  {
         passwordField.sendKeys(password);
     }
     public boolean logoutValidation(){
-        wait.until(
-                ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"root\"]/button"))
-        );
-        return true;
+       wait.until(
+               ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"root\"]/button"))
+       );
+       return driver.findElement(By.xpath("//*[@id=\"root\"]/button")).isDisplayed();
     }
-    public void buttonClick(){
+    public void loginButtonClick(){
         wait.until(
                 ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"root\"]/div/button[1]"))
         );
@@ -49,5 +50,19 @@ public class Loginpage  {
        wait.until(
                ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='root']/div/div[2]"))
        );
+    }
+    public boolean isCreateDragonVisible(){
+       wait.until(
+               ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\'root\']/div[2]/button"))
+       );
+       return driver.findElement(By.xpath("//*[@id=\'root\']/div[2]/button")).isDisplayed();
+    }
+    public void logoutButtonclick(){
+        JavascriptExecutor executor = (JavascriptExecutor) driver;
+        WebElement logoutButton = driver.findElement(By.xpath("//*[@id=\'root\']/button"));
+        executor.executeScript("arguments[0].click()",logoutButton);
+    }
+    public boolean isLoginButtonVisible(){
+       return driver.findElement(By.xpath("//*[@id=\'root\']/div/button[1]")).isDisplayed();
     }
 }

@@ -10,7 +10,7 @@ public class NegativeLoginTest extends BaseTest {
         Loginpage page = new Loginpage(driver);
         page.enterUsername("panda987");
         page.enterPassword("panda987");
-        page.buttonClick();
+        page.loginButtonClick();
        page.errorValidation();
         takeScreenshot("incorrectCredentials");
 
@@ -22,7 +22,7 @@ public class NegativeLoginTest extends BaseTest {
         Loginpage page = new Loginpage(driver);
         page.enterUsername("panda987");
         page.enterPassword("manish123");
-        page.buttonClick();
+        page.loginButtonClick();
         page.errorValidation();
         takeScreenshot("incorrectUsername");
 
@@ -32,7 +32,7 @@ public class NegativeLoginTest extends BaseTest {
         Loginpage page = new Loginpage(driver);
         page.enterUsername("manish123");
         page.enterPassword("panda987");
-        page.buttonClick();
+        page.loginButtonClick();
         page.errorValidation();
         takeScreenshot("incorrectPassword");
 
@@ -42,7 +42,7 @@ public class NegativeLoginTest extends BaseTest {
         Loginpage page = new Loginpage(driver);
         page.enterUsername("manish123");
         page.enterPassword("");
-        page.buttonClick();
+        page.loginButtonClick();
         page.errorValidation();
         takeScreenshot("blankPassword");
 
@@ -52,7 +52,7 @@ public class NegativeLoginTest extends BaseTest {
         Loginpage page = new Loginpage(driver);
         page.enterUsername("");
         page.enterPassword("manish123");
-        page.buttonClick();
+        page.loginButtonClick();
         page.errorValidation();
         takeScreenshot("blankUsername");
 
@@ -62,7 +62,7 @@ public class NegativeLoginTest extends BaseTest {
         Loginpage page = new Loginpage(driver);
         page.enterUsername("");
         page.enterPassword("");
-        page.buttonClick();
+        page.loginButtonClick();
         page.errorValidation();
         takeScreenshot("blankCredentials");
 

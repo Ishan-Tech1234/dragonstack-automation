@@ -2,7 +2,8 @@
 
 ## Overview
 This project contains UI automation tests for the DragonStack web application.
-It focuses on validating critical user flows using Selenium WebDriver.
+It validates critical authentication workflows using Selenium WebDriver
+against a React-based single-page application (SPA).
 
 ## Tech Stack
 - Java
@@ -11,22 +12,30 @@ It focuses on validating critical user flows using Selenium WebDriver.
 - Maven
 
 ## Test Coverage
-- Smoke Test: Login functionality
-- Verifies successful authentication via UI state change
+- End-to-end identity lifecycle:
+    - User signup
+    - Post-signup validation
+    - Logout
+    - Login with the same credentials
+    - Logout validation
+- UI-based authentication state verification
 
-## Key Highlights
-- Explicit waits for synchronization
-- XPath locators suitable for React-based SPA
-- Smoke test execution for quick build validation
+## Automation Design
+- Page Object Model (POM) for test maintainability
+- Explicit waits for handling dynamic React rendering
+- Dynamic test data generation to avoid environment dependency
+- Clear separation between test logic and page interactions
+
+## Locator Strategy
+- XPath locators used due to absence of test-specific attributes
+  (e.g., data-testid) in the application
+- Preference given to semantic attributes (placeholder, text)
+  over index-based paths wherever possible
+- Locator limitations documented and handled via explicit synchronization
 
 ## How to Run
 1. Clone the repository
 2. Start the DragonStack application locally
-3. Run tests using `mvn test`
-
-## Application Under Test
-DragonStack – React-based single-page application with authentication flow.
-
-## Future Enhancements
-- Page Object Model (POM)
-- CI integration with Jenkins
+3. Execute tests using:
+   ```bash
+   mvn test

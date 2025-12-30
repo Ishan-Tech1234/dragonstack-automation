@@ -4,7 +4,7 @@
         <classes>
             <class name="tests.LoginSmokeTest"/>
             <class name="tests.NegativeLoginTest"/>
-            <class name ="tests.SignupTest"/>
+            <class name ="tests.IdentityLifecycleTest"/>
         </classes>
     </test>
 </suite>
