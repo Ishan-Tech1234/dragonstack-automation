@@ -1,6 +1,7 @@
 package tests;
 
 import base.BaseTest;
+import helper.apiAuthentication;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -23,10 +24,13 @@ public class LoginSmokeTest extends BaseTest {
     @Test
     public void LoginTest() {
         Loginpage page = new Loginpage(driver);
+        apiAuthentication apiAuth = new apiAuthentication();
         page.enterUsername("manish123");
         page.enterPassword("manish123");
         page.loginButtonClick();
+        apiAuth.fetchData();
         page.logoutValidation();
+
 
 
     }

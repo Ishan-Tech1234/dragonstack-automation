@@ -22,7 +22,7 @@ public class BaseTest {
         driver.manage().window().maximize();
 
 
-        driver.get("http://localhost:1234/"); // Dragonstack app
+        driver.get("http://localhost:1234"); // Dragonstack app
     }
 
     @AfterMethod

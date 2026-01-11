@@ -5,6 +5,7 @@
             <class name="tests.LoginSmokeTest"/>
             <class name="tests.NegativeLoginTest"/>
             <class name ="tests.IdentityLifecycleTest"/>
+            <class name="tests.E2E_DragonStack_Dashboard_Test"/>
         </classes>
     </test>
 </suite>
