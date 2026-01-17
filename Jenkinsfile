@@ -22,11 +22,11 @@ pipeline {
 
     post {
         always {
-            // ✅ Publish TestNG XML results
+            // ✅ Publish TestNG XML results (plugin-compatible)
             testNG(
                 reportFilenamePattern: 'testng-results.xml',
-                escapeExceptionMessages: true,
-                escapeTestDescription: true,
+                escapeExceptionMsg: true,
+                escapeTestDescp: true,
                 showFailedBuilds: true,
                 unstableSkips: 0
             )
