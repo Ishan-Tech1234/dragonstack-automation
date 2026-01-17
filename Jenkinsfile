@@ -29,7 +29,7 @@ pipeline {
     post {
         always {
             testNG(
-                testResultsPattern: 'target/surefire-reports/testng-results.xml'
+                reportFilenamePattern: 'testng-results.xml'
             )
         }
         success {
