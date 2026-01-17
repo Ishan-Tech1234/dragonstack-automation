@@ -41,4 +41,5 @@ pipeline {
         success {
             echo 'All tests passed successfully.'
         }
-    }
+}
+}
