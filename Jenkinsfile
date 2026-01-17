@@ -7,7 +7,6 @@ pipeline {
     }
 
     stages {
-
         stage('Checkout') {
             steps {
                 checkout scm
@@ -16,27 +15,39 @@ pipeline {
 
         stage('Build & Test') {
             steps {
-                bat '''
-                    echo JAVA_HOME=%JAVA_HOME%
-                    java -version
-                    mvn -version
-                    mvn clean test -DbaseUrl=http://localhost:1234
-                '''
+                bat 'mvn clean test'
             }
         }
     }
 
     post {
         always {
+            // ✅ Publish TestNG XML results
             testNG(
-                reportFilenamePattern: 'testng-results.xml'
+                reportFilenamePattern: 'testng-results.xml',
+                escapeExceptionMessages: true,
+                escapeTestDescription: true,
+                showFailedBuilds: true,
+                unstableSkips: false
             )
+
+            // ✅ Publish HTML TestNG Report
+            publishHTML([
+                allowMissing: false,
+                alwaysLinkToLastBuild: true,
+                keepAll: true,
+                reportDir: 'test-output',
+                reportFiles: 'index.html',
+                reportName: 'TestNG HTML Report'
+            ])
         }
+
         success {
             echo 'Pipeline executed successfully.'
         }
+
         failure {
-            echo 'Tests failed. Check TestNG report.'
+            echo 'Tests failed. Check reports.'
         }
     }
 }
