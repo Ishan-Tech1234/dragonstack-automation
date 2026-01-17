@@ -7,6 +7,7 @@ pipeline {
     }
 
     stages {
+
         stage('Checkout') {
             steps {
                 checkout scm
@@ -23,11 +24,13 @@ pipeline {
     post {
         always {
 
+            // Publish TestNG XML results (Surefire)
             testNG(
                 reportFilenamePattern: 'target/surefire-reports/testng-results.xml',
-                allowEmptyResults: true
+                showFailedBuilds: true
             )
 
+            // Publish HTML report if it exists (won’t fail build)
             publishHTML([
                 allowMissing: true,
                 alwaysLinkToLastBuild: true,
@@ -41,5 +44,9 @@ pipeline {
         success {
             echo 'All tests passed successfully.'
         }
-}
+
+        failure {
+            echo 'Pipeline failed. Check console output or reports.'
+        }
+    }
 }
