@@ -28,7 +28,7 @@ pipeline {
                 escapeExceptionMessages: true,
                 escapeTestDescription: true,
                 showFailedBuilds: true,
-                unstableSkips: false
+                unstableSkips: 0
             )
 
             // ✅ Publish HTML TestNG Report
