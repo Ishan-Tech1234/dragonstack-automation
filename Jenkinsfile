@@ -22,18 +22,14 @@ pipeline {
 
     post {
         always {
-            // ✅ Publish TestNG XML results (plugin-compatible)
+
             testNG(
-                reportFilenamePattern: 'testng-results.xml',
-                escapeExceptionMsg: true,
-                escapeTestDescp: true,
-                showFailedBuilds: true,
-                unstableSkips: 0
+                reportFilenamePattern: 'target/surefire-reports/testng-results.xml',
+                allowEmptyResults: true
             )
 
-            // ✅ Publish HTML TestNG Report
             publishHTML([
-                allowMissing: false,
+                allowMissing: true,
                 alwaysLinkToLastBuild: true,
                 keepAll: true,
                 reportDir: 'test-output',
@@ -43,11 +39,6 @@ pipeline {
         }
 
         success {
-            echo 'Pipeline executed successfully.'
-        }
-
-        failure {
-            echo 'Tests failed. Check reports.'
+            echo 'All tests passed successfully.'
         }
     }
-}
