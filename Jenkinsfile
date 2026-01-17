@@ -7,6 +7,7 @@ pipeline {
     }
 
     stages {
+
         stage('Checkout') {
             steps {
                 checkout scm
@@ -15,19 +16,21 @@ pipeline {
 
         stage('Build & Test') {
             steps {
-                bat 'mvn clean test -DbaseUrl=http://localhost:1234'
+                bat '''
+                    echo JAVA_HOME=%JAVA_HOME%
+                    java -version
+                    mvn -version
+                    mvn clean test -DbaseUrl=http://localhost:1234
+                '''
             }
         }
     }
 
     post {
         always {
-            step([$class: 'Publisher',
-                  reportFilenamePattern: 'testng-results.xml',
-                  reportFilePath: 'target/surefire-reports',
-                  escapeTestDescription: false,
-                  escapeExceptionMessages: false,
-                  showFailedBuilds: true])
+            testNG(
+                testResultsPattern: 'target/surefire-reports/testng-results.xml'
+            )
         }
         success {
             echo 'Pipeline executed successfully.'
